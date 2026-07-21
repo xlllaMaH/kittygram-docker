@@ -17,7 +17,7 @@ jobs:
           POSTGRES_DB: kittygram
         ports:
           - 5432:5432
-        options: --helth-cmd ps_isready --helth-interval 10s --helth-timeout 5s --helth-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     
     steps:
       - name: Check out code
@@ -45,7 +45,7 @@ jobs:
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
           TIME_ZONE: 'Europe/Moscow'
         run: |
-          python -m ruff chech backend/
+          python -m ruff check backend/
           cd backend/
           python manage.py test
     
