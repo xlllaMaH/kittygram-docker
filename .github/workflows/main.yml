@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pyhton -m pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install ruff==0.8.0
           pip install -r ./backend/requirements.txt
 
@@ -41,6 +41,9 @@ jobs:
           POSTGRES_DB: kittygram
           DB_HOST: 127.0.0.1
           DB_PORT: 5432
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          TIME_ZONE: 'Europe/Moscow'
         run: |
           python -m ruff chech backend/
           cd backend/
